@@ -1,0 +1,77 @@
+@import '../../mixin.module.scss';
+
+$ratio: 1.2;
+
+@mixin event($x, $y) {
+    &:hover {
+        color: $modal-highlight;
+        cursor: pointer;
+        transform: translate($x, $y) scale(1.2);
+    }
+}
+
+svg {
+    position: absolute;
+    z-index: 99;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.Modal {
+    position: fixed;
+    @include flex-center();
+    @include location(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: $white;
+    section {
+        @include media-size(90vw, 75vw, 1.618);
+        background-color: $darkgray;
+        header {
+            position: relative;
+            @include flex-center();
+            height: 7%;
+            svg {
+                @include location(0.5vw, 0.5vw, none, none);
+                @include media-width(calc(2.6vw * #{$ratio}), 2.6vw);
+                transition: 0.3s;
+                @include event(0%, 0%);
+            }
+        }
+        .viewer {
+            position: relative;
+            height: 83%;
+            text-align: center;
+            svg {
+                top: 50%;
+                @include media-width(calc(3.6vw * #{$ratio}), 3.6vw);
+                transform: translate(0%, -50%);
+                transition: 0.3s;
+                @include event(0%, -50%);
+            }
+            img {
+                user-select: none;
+                height: 100%;
+            }
+        }
+        footer {
+            @include flex-center();
+            height: 10%;
+            img {
+                @include media-size(calc(6vw * #{$ratio}), 6vw, 1.5);
+                margin: 0 0.25vw 0 0.25vw;
+                transition: 0.3s;
+                &:hover {
+                    cursor: pointer;
+                    box-shadow: 0 1px 3px 1px $gray;
+                    transform: scale(1.05);
+                }
+            }
+            .current {
+                border: 0.16vw solid $modal-highlight;
+                transform: scale(1.05);
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+@import '../../mixin.module.scss';
+
+.profile {
+    @include size(250px, 250px);
+    border-radius: 50%;
+    @include if-mobile {
+        margin: 1rem 0 2rem 0;
+    }
+    margin: 1rem 0 1rem 2rem;
+    box-shadow: 0 0 5px 3px gray;
+}

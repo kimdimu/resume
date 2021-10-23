@@ -1,0 +1,91 @@
+@import './mixin.module.scss';
+
+.Resume {
+    @include media-width(90%, 1116px);
+    margin: 0px auto;
+    padding: 60px 0 20px 0;
+    line-height: 2;
+    .Container {
+        .Subject {
+            border-bottom: 2px solid $silver;
+            margin-bottom: 2rem;
+        }
+        .Wrapper {
+            display: flex;
+            flex-flow: wrap;
+            @include if-mobile {
+                margin-bottom: 4rem;
+            }
+            margin-bottom: 2rem;
+            .Left {
+                @include media-width(100%, 28%);
+                @include media-text-align;
+                @include if-mobile {
+                    padding-right: 0;
+                }
+                padding-right: 5%;
+            }
+            .Right {
+                @include media-width(100%, 72%);
+                .desc {
+                    @include if-mobile {
+                        margin-top: 1rem;
+                    }
+                    margin-top: 0;
+                    ul {
+                        @include if-mobile {
+                            padding-inline-start: 20px;
+                        }
+                        padding-inline-start: 40px;
+                        .foldable {
+                            list-style: none;
+                            details {
+                                margin-left: -15px;
+                                summary:hover {
+                                    @include font($black, normal, 400, 1.5rem);
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+                .keywords {
+                    @include media-content-align;
+                    span {
+                        display: inline-block;
+                        background-color: $smoke;
+                        @include if-mobile {
+                            margin: 0.5rem;
+                        }
+                        margin: 0.5rem 1rem 0.5rem 0;
+                        padding: 1px 6px;
+                        line-height: normal;
+                        @include font($darkgray, normal, 300, 1.5rem);
+                        box-shadow: 0 1px 3px 0 $gray;
+                    }
+                }
+                .images, .pdfs {
+                    @include media-content-align;
+                    a {
+                        font-size: 0;
+                    }
+                    img {
+                        @include size(12rem, 8rem);
+                        border-radius: 5%;
+                        @include if-mobile {
+                            margin: 0.5rem;
+                        }
+                        margin: 0.5rem 1rem 0.5rem 0;
+                        box-shadow: 0 1px 3px 1px $gray;
+                        transition: 0.3s;
+                        &:hover {
+                            cursor: pointer;
+                            box-shadow: 0 2px 5px 2px $gray;
+                            transform: scale(1.05);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

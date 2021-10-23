@@ -1,0 +1,73 @@
+$black: #000;
+$darkgray: #333;
+$gray: #808080;
+$silver: #CCC;
+$smoke: #f0f0f0;
+$white: #fff;
+$modal-highlight: #FFC745;
+$footer-link: #007bff;
+
+@mixin location($top, $right, $bottom, $left) {
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin font($color, $style, $weight, $size) {
+    color: $color;
+    font: {
+        display: swap;
+        family: 'Roboto', 'Noto Sans KR', sans-serif;
+        style: $style;
+        weight: $weight;
+        size: $size;
+    }
+}
+
+@mixin flex-center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin if-mobile() {
+    @media all and (max-width: 1023px) {
+        @content;
+    }
+}
+
+@mixin media-width($mobile, $desktop) {
+    @include if-mobile() {
+        width: $mobile;
+    }
+    width: $desktop;
+}
+
+@mixin media-size($mobile, $desktop, $ratio) {
+    @include if-mobile() {
+        @include size($mobile, calc(#{$mobile} / #{$ratio}));
+    }
+    @include size($desktop, calc(#{$desktop} / #{$ratio}));
+}
+
+@mixin media-content-align() {
+    display: flex;
+    flex-flow: wrap;
+    @include if-mobile() {
+        justify-content: center;
+    }
+    justify-content: initial;
+}
+
+@mixin media-text-align() {
+    @include if-mobile() {
+        text-align: center;
+    }
+    text-align: initial;
+}

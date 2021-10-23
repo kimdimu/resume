@@ -1,0 +1,56 @@
+@import '../../mixin.module.scss';
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.contact {
+    display:flex;
+    @include if-mobile {
+        justify-content: center;
+    }
+    justify-content: flex-end;
+    a {
+        position: relative;
+        display: inline-block;
+        @include size(5rem, 5rem);
+        margin-left: 1rem;
+        text-align: center;
+        color: $white;
+        transition: color 0.3s;
+        &::before {
+            content: '';
+            position: absolute;
+            box-sizing: inherit;
+            z-index: -1;
+            @include location(0, 0, 0, 0);
+            @include size(inherit, inherit);
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 30px $darkgray;
+            transition: box-shadow 0.3s;
+        }
+        &:hover {
+            color: $darkgray;
+            &::before {
+                border: solid 2px $white;
+                border-top: solid 2px $darkgray;
+                box-shadow: inset 0 0 0 2px $darkgray;
+                animation: {
+                    name: spin;
+                    duration: 1s;
+                    iteration-count: infinite;
+                    timing-function: linear;
+                }
+            }
+        }
+        i {
+            line-height: 5rem;
+            font-size: 3rem;
+        }
+    }
+}
